@@ -1,0 +1,84 @@
+{
+  "name": "electron-typescript-multi-platform",
+  "version": "1.0.0",
+  "description": "electron-typescript-multi-platform",
+  "main": "./dist/main.js",
+  "scripts": {
+    "ts-build": "TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack",
+    "watch": "TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack --watch",
+    "lint": "eslint --ext .ts --ignore-path .gitignore .",
+    "dev": "npm run ts-build && electron ./dist/main.js",
+    "package:mac": "npm run ts-build && electron-builder --mac --x64",
+    "package:windows": "npm run ts-build && electron-builder --win --x64",
+    "package:linux": "npm run ts-build && electron-builder --linux --x64"
+  },
+  "repository": "private",
+  "homepage": "https://testtest.co.jp",
+  "author": {
+    "name": "tanaka-yui",
+    "email": "tanaka-yui@testtest.co.jp"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@types/fs-extra": "^8.0.0",
+    "@types/node": "^12.7.11",
+    "@types/webpack": "^4.39.2",
+    "@typescript-eslint/eslint-plugin": "^2.3.2",
+    "@typescript-eslint/parser": "^2.3.2",
+    "electron": "^6.0.11",
+    "electron-builder": "^21.2.0",
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "fs-extra": "^8.1.0",
+    "prettier": "^1.18.2",
+    "ts-loader": "^6.2.0",
+    "ts-node": "^8.4.1",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.6.3",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9"
+  },
+  "build": {
+    "productName": "electron-typescript-multi-platform",
+    "appId": "electron-typescript-multi-platform",
+    "directories": {
+      "output": "./out"
+    },
+    "files": [
+      "./dist/**"
+    ],
+    "dmg": {
+      "contents": [
+        {
+          "x": 410,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 150,
+          "type": "file"
+        }
+      ]
+    },
+    "mac": {
+      "icon": "build/icons/icon.png",
+      "target": [
+        "dmg"
+      ]
+    },
+    "win": {
+      "icon": "build/icons/icon.png",
+      "target": "msi"
+    },
+    "linux": {
+      "icon": "build/icons",
+      "target": [
+        "deb"
+      ],
+      "category": "Video"
+    }
+  }
+}
